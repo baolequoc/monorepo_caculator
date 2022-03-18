@@ -1,0 +1,21 @@
+{
+  "name": "monorepo_caculator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "BaoLe",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb-base": "14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "global": "^4.4.0",
+    "lerna": "^4.0.0"
+  },
+  "scripts": {
+    "dev": "lerna run dev --stream"
+  },
+  "npmClient": "yarn",
+  "dependencies": {
+    "babel-cli": "^6.26.0"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "paths": {
+      "@backend/*": ["./packages/backend/app/*"],
+      "@frontend/*": ["./packages/frontend/src/*"]
+    }
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
