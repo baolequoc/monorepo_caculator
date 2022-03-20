@@ -52,8 +52,6 @@ export default createStore({
       removeAuth();
       removeTokenLocal();
       location.reload();
-      // eslint-disable-next-line quotes
-      console.log(`Đăng xuất`);
     },
     test () {
       console.log('test sussucess');

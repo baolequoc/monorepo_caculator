@@ -1,12 +1,12 @@
 /* eslint-disable no-console */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-shadow */
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-undef */
+
 /* eslint-disable import/no-unresolved */
 import {
-  getToken, removeToken, setToken, setAuth, removeAuth, getAuth,
+  removeToken, setToken, setAuth, removeAuth, getAuth,
 } from '@/utils/localStorage';
 import projectApi from '@/service/projectApi';
 
@@ -18,15 +18,12 @@ export const state = () => ({
 export const actions = {
   restoreSession ({ commit }) {
     const user = getAuth();
-    console.log('reset session');
     if (!user) { return; }
     commit('setUser', user);
   },
   async signIn ({ commit }, payload) {
     try {
-      console.log('Vao payload');
       const res = await projectApi.signin(payload);
-      console.log(res);
       if (res.status === 200) {
         const user = res.data;
         setToken(user.accessToken);
@@ -41,11 +38,6 @@ export const actions = {
     removeAuth();
     removeToken();
     location.reload();
-    // eslint-disable-next-line quotes
-    console.log(`Đăng xuất`);
-  },
-  test () {
-    console.log('test sussucess');
   },
 };
 

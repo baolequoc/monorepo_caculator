@@ -109,14 +109,12 @@ export default {
     async submmitData () {
       // calculate expression
       try {
-        const valueSend = { "value": this.value };
-        const response = await projectApi.getValue(valueSend);
+        const response = await projectApi.getValue(this.value);
         this.result = '=' + response.data.value;
         this.history.push(this.value);
         if (this.$store.state.user) {
-          // save history to database
-          const sendHistory = { "history": this.value };
-          projectApi.saveData(sendHistory);
+          // // save history to database
+          projectApi.saveData(this.value);
         }
         else {
           // save to localStorage
@@ -124,7 +122,6 @@ export default {
         }
         this.value = response.data.value + '';
       } catch (e) {
-        console.log(e);
         this.title = 'Something went wrong, please login again!';
         this.showModal = true;
       }

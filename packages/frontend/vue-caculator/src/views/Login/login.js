@@ -36,10 +36,7 @@ export default {
       const password = this.inputs[1].value;
       // send value
       try {
-        await this.$store.dispatch('signIn', {
-          email,
-          password,
-        });
+        await this.$store.dispatch('signIn', { email, password });
         this.$router.push('home');
       } catch (err) {
         this.message = err.response.data.message;

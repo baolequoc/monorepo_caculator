@@ -1,9 +1,7 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable no-undef */
-// eslint-disable-next-line import/no-unresolved
 import InputForm from '@/components/input-form.vue';
-// eslint-disable-next-line import/no-unresolved
 import projectApi from '@/service/projectApi';
-// eslint-disable-next-line import/no-unresolved
 import modalNotification from '@/components/modalNotification.vue';
 
 export default {
