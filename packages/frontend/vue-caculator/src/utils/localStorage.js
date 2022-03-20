@@ -3,11 +3,11 @@ const itemName = 'accessToken';
 const itemUser = 'user';
 const itemHistory = 'history';
 // eslint-disable-next-line import/prefer-default-export
-export const getToken = () => localStorage.getItem(itemName);
+export const getTokenLocal = () => localStorage.getItem(itemName);
 
-export const setToken = (token) => localStorage.setItem(itemName, token);
+export const setTokenLocal = (token) => localStorage.setItem(itemName, token);
 
-export const removeToken = () => localStorage.removeItem(itemName);
+export const removeTokenLocal = () => localStorage.removeItem(itemName);
 
 export const setAuth = (authData) => localStorage.setItem(itemUser, JSON.stringify(authData));
 

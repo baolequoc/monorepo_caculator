@@ -65,13 +65,11 @@ export default {
           this.title = reponse.data.message;
           this.showModal = true;
           // sigin
-          const responseLogin = await projectApi.signin({ email, password });
-          // save token to localStorage
-          if (responseLogin.data.accessToken) {
-            // eslint-disable-next-line no-undef
-            localStorage.setItem('accessToken', responseLogin.data.accessToken);
-            this.$router.push('home');
-          }
+          await this.$store.dispatch('signIn', {
+            email,
+            password,
+          });
+          this.$router.push('home');
         } catch (err) {
           this.message = err.response.data.message;
         }

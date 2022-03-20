@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-shadow */
 /* eslint-disable no-unused-vars */
@@ -11,6 +12,7 @@ import projectApi from '@/service/projectApi';
 
 export const state = () => ({
   user: null,
+  token: null,
 });
 
 export const actions = {
@@ -22,14 +24,13 @@ export const actions = {
   },
   async signIn ({ commit }, payload) {
     try {
-      console.log('aaaaaaaaaa');
+      console.log('Vao payload');
       const res = await projectApi.signin(payload);
       console.log(res);
       if (res.status === 200) {
         const user = res.data;
         setToken(user.accessToken);
         setAuth(user);
-        console.log(`Đăng nhập với tên là ${user.username}`);
         commit('setUser', user);
       }
     } catch (err) {

@@ -27,8 +27,7 @@
 
 
   /* eslint-disable import/no-unresolved */
-// @ is an alias to /src
-import modalNotification from "./modalNotification.vue"
+import modalNotification from "./modalNotification.vue";
 import buttonCaculator from './button-caculator.vue';
 import projectApi from '@/service/projectApi';
 import axios from 'axios';
@@ -42,12 +41,12 @@ export default {
     buttonCaculator,modalNotification,
   },
   async created () {
-    if (localStorage.getItem('accessToken')) {
+    await this.$store.dispatch('restoreSession');
+    if (this.$store.state.user) {
       try {
         const response = await projectApi.getHistory();
         this.value = response.data.history + '';
         this.login = true;
-
       } catch (error) {
         console.log(error);
         this.title = 'Something went wrong, please login again!';
@@ -55,8 +54,8 @@ export default {
       }
       // get history from localStorage
     } else {
-      if (localStorage.getItem('history')) {
-        this.value = localStorage.getItem('history');
+      if (getHistory()) {
+        this.value = getHistory();
       }
     }
   },
@@ -114,17 +113,14 @@ export default {
         const response = await projectApi.getValue(valueSend);
         this.result = '=' + response.data.value;
         this.history.push(this.value);
-        if (this.login) {
+        if (this.$store.state.user) {
           // save history to database
-          if (localStorage.getItem('accessToken')) {
-
-            const sendHistory = { "history": this.value };
-            projectApi.saveData(valueSend);
-          }
+          const sendHistory = { "history": this.value };
+          projectApi.saveData(sendHistory);
         }
         else {
           // save to localStorage
-          localStorage.setItem('history', this.value);
+          setHistory(this.value);
         }
         this.value = response.data.value + '';
       } catch (e) {
@@ -133,10 +129,10 @@ export default {
         this.showModal = true;
       }
   },
-  logout() {
+  async logout() {
       // remove token in localStorage
       this.login = false;
-      localStorage.removeItem('accessToken');
+      await this.$store.dispatch('signOut');
   },
   },
 };
