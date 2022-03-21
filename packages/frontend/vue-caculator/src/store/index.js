@@ -16,7 +16,6 @@ export default createStore({
   },
   mutations: {
     setUser (state, user) {
-      console.log('set user');
       // eslint-disable-next-line no-param-reassign
       state.user = user;
     },
@@ -52,9 +51,6 @@ export default createStore({
       removeAuth();
       removeTokenLocal();
       location.reload();
-    },
-    test () {
-      console.log('test sussucess');
     },
   },
 });

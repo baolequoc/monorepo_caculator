@@ -12,8 +12,6 @@ export async function getData (req, res) {
     }
     const user = await User.findByPk(req.userId);
     if (user) {
-      console.log(' lay du lieu cua user');
-      console.log(user);
       res.send({ history: user.history });
     } else {
       throw new Error('Not exist user');
@@ -28,7 +26,6 @@ export async function exportData (req, res) {
     if (!req.body.value) {
       throw new Error('Not have value');
     }
-    console.log('connected to server');
     const sample = await convertExpresstion(req.body.value);
     res.send(
       { value: sample },

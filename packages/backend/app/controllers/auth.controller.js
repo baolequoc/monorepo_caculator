@@ -45,8 +45,6 @@ export async function signin (req, res) {
         email: req.body.email,
       },
     });
-    // eslint-disable-next-line no-console
-    console.log(user);
     if (!user) {
       res.status(404).send({ message: 'User Not found.' });
     }
