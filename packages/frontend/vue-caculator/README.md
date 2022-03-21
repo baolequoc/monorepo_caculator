@@ -1,5 +1,13 @@
 # vue-caculator
 
+## Getting started
+- Clone your this repo
+- Install node dependencies
+```Bash
+cd path/to/your/project/moorepo_caculator/packages/frontend/vue-caculator
+yarn
+```
+
 ## Project setup
 ```
 yarn install
@@ -7,7 +15,7 @@ yarn install
 
 ### Compiles and hot-reloads for development
 ```
-yarn serve
+yarn dev
 ```
 
 ### Compiles and minifies for production
