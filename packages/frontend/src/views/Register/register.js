@@ -9,7 +9,7 @@ export default {
   components: {
     InputForm, modalNotification,
   },
-  data () {
+  data() {
     return {
       message: '',
       inputs: [
@@ -43,7 +43,7 @@ export default {
     };
   },
   methods: {
-    async handleSubmit () {
+    async handleSubmit() {
       // get value input
       const username = this.inputs[0].value;
       const email = this.inputs[1].value;

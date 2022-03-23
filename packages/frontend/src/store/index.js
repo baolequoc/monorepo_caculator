@@ -16,11 +16,9 @@ export default createStore({
   },
   mutations: {
     setUser (state, user) {
-      // eslint-disable-next-line no-param-reassign
       state.user = user;
     },
     setToken (state, token) {
-      // eslint-disable-next-line no-param-reassign
       state.token = token;
     },
   },

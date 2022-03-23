@@ -1,34 +1,39 @@
 <template>
+<div class="home">
   <button type="button" v-if="login" class="btn btn-primary" @click="logout">Logout</button>
-  <div class="home">
-    <div class="mx-auto overflow-hidden mt-10 shadow-lg mb-2 bg-purple-800 shadow-lg border rounded-lg lg:w-2/6 md:w-3/6 sm:w-4/6">
-      <modalNotification :title="title" v-show="showModal" @onClose="this.showModal =false"/>
-      <div class="">
-        <div class="p-5 text-white text-center text-3xl bg-purple-900"><span class="text-orange-500">Calcu</span>lator</div>
-        <div class="pt-16 p-5 pb-0 text-white text-right text-3xl bg-purple-800">
-          <div class="md:container md:mx-auto">
-            <p v-for="val in history" :key="val">{{val}}</p>
-              <p>{{value}}</p> 
-          </div>
-          </div>
-        <div class="p-5 text-white text-right text-3xl bg-purple-800"><span class="text-orange-500">{{result}}</span></div>
-        <div v-for="(buttons,i) in rows" :key="i"  class="flex items-stretch bg-purple-900 h-24">
-            <buttonCaculator v-for="button in buttons" 
-            :key="button"
-            @on-click="handleEvent"
-            :character="button"
-            />
+  <div
+    class="mx-auto overflow-hidden mt-10 shadow-lg mb-2 bg-purple-800 shadow-lg border rounded-lg lg:w-2/6 md:w-3/6 sm:w-4/6">
+    <modalNotification :title="title" v-show="showModal" @onClose="this.showModal =false" />
+    <div class="">
+      <div class="p-5 text-white text-center text-3xl bg-purple-900"><span class="text-orange-500">Calcu</span>lator
+      </div>
+      <div class="pt-16 p-5 pb-0 text-white text-right text-3xl bg-purple-800">
+        <div class="md:container md:mx-auto">
+          <p v-for="val in history" :key="val">{{val}}</p>
+          <p>{{value}}</p>
         </div>
+      </div>
+      <div class="p-5 text-white text-right text-3xl bg-purple-800"><span class="text-orange-500">{{result}}</span>
+      </div>
+      <div v-for="(buttons,i) in rows" :key="i" class="flex items-stretch bg-purple-900 h-24">
+        <div v-for="button in buttons" :key="button"
+          class="flex-1 px-2 py-2 justify-center flex items-center text-white text-2xl font-semibold">
+          <button @click="handleEvent(button)" class="rounded-full h-20 w-20 flex items-center 
+            bg-purple-800 justify-center shadow-lg border-2 border-purple-700 
+            hover:border-2 hover:border-gray-500 focus:outline-none">
+            {{button}}
+          </button>
+        </div>
+      </div>
     </div>
   </div>
- </div>
+</div>
 </template>
 <script>
 
 
   /* eslint-disable import/no-unresolved */
 import modalNotification from "./modalNotification.vue";
-import buttonCaculator from './button-caculator.vue';
 import projectApi from '@/service/projectApi';
 import axios from 'axios';
 import {
@@ -38,7 +43,7 @@ import {
 export default {
   name: 'Caculator',
   components: {
-    buttonCaculator,modalNotification,
+    modalNotification,
   },
   async created () {
     await this.$store.dispatch('restoreSession');
