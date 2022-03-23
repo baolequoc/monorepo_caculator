@@ -9,7 +9,9 @@ module.exports = {
     name: {
       type: Sequelize.STRING,
     },
-    createdAt: Sequelize.DATE,
+    createdAt: {
+      type: Sequelize.DATE,
+    },
     updatedAt: Sequelize.DATE,
   }),
 

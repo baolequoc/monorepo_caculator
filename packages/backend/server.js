@@ -12,13 +12,8 @@ import db from './app/models/index';
 
 // db.sequelize.sync();
 // force: true will drop the table if it already exists
-db.sequelize.sync();
-
-
-// // routes
-// require('./app/routes/auth.routes')(app);
-// require('./app/routes/user.routes')(app);
-
+// eslint-disable-next-line no-unused-expressions
+db.sequelize;
 
 auth_routes(app);
 user_routes(app);
