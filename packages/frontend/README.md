@@ -4,7 +4,7 @@
 - Clone your this repo
 - Install node dependencies
 ```Bash
-cd path/to/your/project/moorepo_caculator/packages/frontend/vue-caculator
+cd path/to/your/project/moorepo_caculator/packages/frontend/
 yarn
 ```
 
