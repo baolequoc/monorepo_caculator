@@ -1,6 +1,5 @@
 <template>
 <div class="home">
-  <button type="button" v-if="login" class="btn btn-primary" @click="logout">Logout</button>
   <div
     class="mx-auto overflow-hidden mt-10 shadow-lg mb-2 bg-purple-800 shadow-lg border rounded-lg lg:w-2/6 md:w-3/6 sm:w-4/6">
     <modalNotification :title="title" v-show="showModal" @onClose="this.showModal =false" />
@@ -130,11 +129,6 @@ export default {
         this.title = 'Something went wrong, please login again!';
         this.showModal = true;
       }
-  },
-  async logout() {
-      // remove token in localStorage
-      this.login = false;
-      await this.$store.dispatch('signOut');
   },
   },
 };

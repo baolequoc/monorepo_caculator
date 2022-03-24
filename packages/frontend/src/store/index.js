@@ -22,9 +22,6 @@ export default createStore({
       state.token = token;
     },
   },
-  getters: {
-
-  },
   actions: {
     restoreSession ({ commit }) {
       const user = getAuth();
@@ -42,7 +39,8 @@ export default createStore({
           commit('setUser', user);
         }
       } catch (err) {
-        console.log(err);
+        // eslint-disable-next-line
+        throw new Error(err.response.data.message);
       }
     },
     signOut () {

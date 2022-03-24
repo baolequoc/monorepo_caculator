@@ -1,12 +1,13 @@
 /* eslint-disable import/no-unresolved */
 // eslint-disable-next-line import/no-unresolved
 import InputForm from '@/components/input-form.vue';
+import Header from '@/components/header.vue';
 // eslint-disable-next-line import/order
 
 export default {
   name: 'login',
   components: {
-    InputForm,
+    InputForm,Header
   },
   created () {
   },
@@ -39,7 +40,7 @@ export default {
         await this.$store.dispatch('signIn', { email, password });
         this.$router.push('home');
       } catch (err) {
-        this.message = err.response.data.message;
+        this.message = err.message;
       }
     },
   },

@@ -3,11 +3,12 @@
 import InputForm from '@/components/input-form.vue';
 import projectApi from '@/service/projectApi';
 import modalNotification from '@/components/modalNotification.vue';
+import Header from '@/components/header.vue';
 
 export default {
   name: 'register',
   components: {
-    InputForm, modalNotification,
+    InputForm, modalNotification, Header,
   },
   data() {
     return {

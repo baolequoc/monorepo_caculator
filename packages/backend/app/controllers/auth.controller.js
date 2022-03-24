@@ -38,7 +38,7 @@ export async function signup (req, res) {
   }
 }
 
-export async function signin (req, res) {
+export async function signin (req, res, next) {
   try {
     const user = await User.findOne({
       where: {
@@ -47,22 +47,17 @@ export async function signin (req, res) {
     });
     if (!user) {
       res.status(404).send({ message: 'User Not found.' });
+      return;
     }
-
-    const passwordIsValid = compareSync(
-      req.body.password,
-      user.password,
-    );
-
+    const passwordIsValid = compareSync(req.body.password, user.password);
     if (!passwordIsValid) {
       res.status(401).send({
         accessToken: null,
         message: 'Invalid Password!',
       });
+      return;
     }
-
     const token = await getSignedToken({ id: user.id });
-
     const authorities = [];
     const roles = await user.getRoles();
     // eslint-disable-next-line no-plusplus
@@ -77,6 +72,6 @@ export async function signin (req, res) {
       accessToken: token,
     });
   } catch (err) {
-    res.status(500).send({ message: err.message });
+    next(err);
   }
 }
