@@ -1,8 +1,9 @@
+/* eslint-disable import/prefer-default-export */
 import db from '../models/index';
 
 const User = db.user;
 
-async function checkRoleContains (id, role) {
+export const checkRoleContains = async (id, role) => {
   try {
     const user = await User.findByPk(id);
     if (!user) {
@@ -13,7 +14,4 @@ async function checkRoleContains (id, role) {
   } catch (e) {
     return false;
   }
-}
-module.exports = {
-  checkRoleContains,
 };
