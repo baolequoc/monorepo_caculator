@@ -1,6 +1,6 @@
 import authJwt from '../middleware/authJwt';
-import { saveData, exportData, getData } from '../controllers/data.controller';
-
+import { caculateExpression } from '../controllers/data.controller';
+import { getHistory, saveHistory } from '../controllers/user.controller';
 
 export default function (app) {
   app.use((req, res, next) => {
@@ -11,9 +11,9 @@ export default function (app) {
     next();
   });
 
-  app.post('/api/savedata', [authJwt.decodeUserIdByToken], saveData);
+  app.post('/user/history', [authJwt.decodeUserIdByToken], saveHistory);
 
-  app.post('/api/getdata', exportData);
+  app.post('/caculate', caculateExpression);
 
-  app.get('/api/getdata', [authJwt.decodeUserIdByToken], getData);
+  app.get('/user/history', [authJwt.decodeUserIdByToken], getHistory);
 }

@@ -5,7 +5,7 @@ class ProjectApi {
   static async saveData (value) {
     // save history to database
     const sendHistory = { history: value };
-    await axios.post(`${process.env.VUE_APP_BACKEND}/savedata`, sendHistory, {
+    await axios.post(`${process.env.VUE_APP_BACKEND}/user/history`, sendHistory, {
       headers: {
         'x-access-token': getTokenLocal(),
       },
@@ -24,12 +24,12 @@ class ProjectApi {
 
   static async getValue (value) {
     const valueSend = { value };
-    const response = await axios.post(`${process.env.VUE_APP_BACKEND}/getdata`, valueSend);
+    const response = await axios.post(`${process.env.VUE_APP_BACKEND}/caculate`, valueSend);
     return response;
   }
 
   static async getHistory () {
-    const response = await axios.get(`${process.env.VUE_APP_BACKEND}/getdata`, {
+    const response = await axios.get(`${process.env.VUE_APP_BACKEND}/user/history`, {
       headers: {
         'x-access-token': getTokenLocal(),
       },

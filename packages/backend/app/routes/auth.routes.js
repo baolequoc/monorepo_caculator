@@ -11,7 +11,7 @@ export default (app) => {
   });
 
   app.post(
-    '/api/auth/signup',
+    '/auth/signup',
     [
       verifySignUp.checkDuplicateUsernameOrEmail,
       verifySignUp.checkRolesExisted,
@@ -19,5 +19,5 @@ export default (app) => {
     signup,
   );
 
-  app.post('/api/auth/signin', signin);
+  app.post('/auth/signin', signin);
 };

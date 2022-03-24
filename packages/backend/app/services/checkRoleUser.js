@@ -9,12 +9,7 @@ async function checkRoleContains (id, role) {
       return false;
     }
     const roles = user.getRoles();
-    for (let i = 0; i < roles.length; i += 1) {
-      if (role[i].name === role.toLowerCase()) {
-        return true;
-      }
-    }
-    return false;
+    return roles.filter((r) => r.name === role.toLowerCase());
   } catch (e) {
     return false;
   }

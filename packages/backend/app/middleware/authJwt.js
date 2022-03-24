@@ -17,40 +17,52 @@ const decodeUserIdByToken = async (req, res, next) => {
 
 
 const isAdmin = async (req, res, next) => {
-  const checkRoleAdmin = await checkRoleContains(req.userId, 'admin');
-  if (checkRoleAdmin) {
-    next();
-    // eslint-disable-next-line no-useless-return
-    return;
+  try {
+    const checkRoleAdmin = await checkRoleContains(req.userId, 'admin');
+    if (checkRoleAdmin) {
+      next();
+      // eslint-disable-next-line no-useless-return
+      return;
+    }
+    res.status(403).send({
+      message: 'Require Admin Role!',
+    });
+  } catch (err) {
+    next(err);
   }
-  res.status(403).send({
-    message: 'Require Admin Role!',
-  });
 };
 
 const isModerator = async (req, res, next) => {
-  const checkRoleMod = await checkRoleContains(req.userId, 'moderator');
-  if (checkRoleMod) {
-    next();
-    // eslint-disable-next-line no-useless-return
-    return;
+  try {
+    const checkRoleMod = await checkRoleContains(req.userId, 'moderator');
+    if (checkRoleMod) {
+      next();
+      // eslint-disable-next-line no-useless-return
+      return;
+    }
+    res.status(403).send({
+      message: 'Require Moderator Role!',
+    });
+  } catch (err) {
+    next(err);
   }
-  res.status(403).send({
-    message: 'Require Moderator Role!',
-  });
 };
 
 const isModeratorOrAdmin = async (req, res, next) => {
-  const checkRoleAdmin = await checkRoleContains(req.userId, 'admin');
-  const checkRoleMod = await checkRoleContains(req.userId, 'moderator');
-  if (checkRoleAdmin || checkRoleMod) {
-    next();
-    // eslint-disable-next-line no-useless-return
-    return;
+  try {
+    const checkRoleAdmin = await checkRoleContains(req.userId, 'admin');
+    const checkRoleMod = await checkRoleContains(req.userId, 'moderator');
+    if (checkRoleAdmin || checkRoleMod) {
+      next();
+      // eslint-disable-next-line no-useless-return
+      return;
+    }
+    res.status(403).send({
+      message: 'Require Moderator or Admin Role!',
+    });
+  } catch (err) {
+    next(err);
   }
-  res.status(403).send({
-    message: 'Require Moderator Role!',
-  });
 };
 
 const authJwt = {
